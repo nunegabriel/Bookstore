@@ -1,4 +1,9 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Books from './components/Books';
+import Add from './components/Add';
+import Categories from './components/Categories';
 
 import './App.css';
 
@@ -10,7 +15,14 @@ class App extends Component {
 
   render() {
     return (
-      <div />
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route exact path="/" element={<Books />} />
+          <Route path="/Categories" element={<Categories />} />
+          <Route path="/Add" element={<Add />} />
+        </Routes>
+      </Router>
     );
   }
 }
