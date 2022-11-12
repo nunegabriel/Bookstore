@@ -1,7 +1,8 @@
 /* eslint-disable */
 import React from 'react';
-import Book from './Book';
 import Add from './Add';
+import Book from './Book';
+
 
 const list = [
   {
@@ -11,11 +12,15 @@ const list = [
   }
 ];
 
-const Books = () => (
-  <div>
+function Books () 
+{  
+    return(
+        <div>
     {list.map((list) => <Book key={list.id} title={list.title} author={list.author} />)}
     <Add />
   </div>
-);
+
+    )
+}
 
 export default Books;
