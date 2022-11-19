@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 const ADD = 'ADD';
 const REMOVE = 'REMOVE';
 
@@ -11,8 +9,11 @@ const books = [
 const BooksReducer = (state = books, action) => {
   switch (action.type) {
     case ADD:
-      return [ ...state, { id: Date.now(),  author: action.option.author, title: action.option.title,
-        },
+      return [...state, {
+        id: Date.now(),
+        author: action.option.author,
+        title: action.option.title,
+      },
       ];
 
     case REMOVE:

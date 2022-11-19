@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -12,12 +10,16 @@ function Book({
   return (
     <div>
       <h2>
-        Title : {title}
+        Title :
+        {' '}
+        {title}
       </h2>
       <h3>
-        Author : {author}
+        Author :
+        {' '}
+        {author}
       </h3>
-      
+
       <button className="btn" type="button" onClick={() => removeBook(id)}>
         Remove
       </button>
