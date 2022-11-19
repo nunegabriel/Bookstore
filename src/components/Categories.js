@@ -1,10 +1,8 @@
-/* eslint-disable */
-
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { CheckStatus } from '../redux/categories/categories';
 
-function Categories () {
+function Categories() {
   const dispatch = useDispatch();
   const UpdateStatus = () => dispatch(CheckStatus());
   const CategoriesStatus = useSelector((state) => state.categoriesReducer);
@@ -16,6 +14,6 @@ function Categories () {
       </button>
     </div>
   );
-};
+}
 
 export default Categories;

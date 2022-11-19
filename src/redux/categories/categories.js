@@ -1,22 +1,18 @@
-/* eslint-disable */
-
-const CHECK = 'CHECK';
+const BOOK_STATUS = 'BOOK_STATUS';
 
 const categories = [];
 
-const categoriesReducer = (state = categories, action) => 
-{
-  switch (action.type) 
-  {
-    case CHECK:
-      return ['TBA'];
+export const CheckStatus = () => ({
+  type: BOOK_STATUS,
+});
+
+const categoriesReducer = (state = categories, action) => {
+  switch (action.type) {
+    case BOOK_STATUS:
+      return 'N/A';
     default:
-     return state;
+      return state;
   }
 };
-
-export const CheckStatus = () => ({
-  type: CHECK,
-});
 
 export default categoriesReducer;
