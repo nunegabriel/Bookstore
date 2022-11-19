@@ -1,5 +1,5 @@
-/* eslint-disable */ 
 import { React, useState } from 'react';
+import { PropTypes } from 'prop-types';
 
 const Addfunction = ({ bookAdd }) => {
   const [initBook, setBook] = useState({
@@ -7,22 +7,21 @@ const Addfunction = ({ bookAdd }) => {
     title: '',
   });
 
-  
   const formEvent = (e) => {
     bookAdd(e, initBook);
     setBook({ title: '', author: '' });
-  }
+  };
 
   return (
-    <div className ="form">
-      <h2>ADD NEW BOOK</h2>   
-    
-      <form onSubmit={ formEvent }>
+    <div className="form">
+      <h2>ADD NEW BOOK</h2>
+
+      <form onSubmit={formEvent}>
 
         <input
           type="text"
           placeholder="Title"
-          className='title'
+          className="title"
           value={initBook.title}
           required
           onChange={(e) => setBook({ ...initBook, title: e.target.value })}
@@ -30,7 +29,7 @@ const Addfunction = ({ bookAdd }) => {
         <input
           type="text"
           placeholder="Author"
-          className='author'
+          className="author"
           value={initBook.author}
           required
           onChange={(e) => setBook({ ...initBook, author: e.target.value })}
@@ -41,5 +40,8 @@ const Addfunction = ({ bookAdd }) => {
   );
 };
 
+Addfunction.propTypes = {
+  bookAdd: PropTypes.func.isRequired,
+};
 
 export default Addfunction;
