@@ -1,36 +1,35 @@
-// Action
-const ADD = 'src/redux/books/ADD';
-const REMOVE = 'src/redux/books/REMOVE';
+/* eslint-disable */
 
-const displayBooks = {
-  id: 1,
-  author: 'Gabriel',
-  title: 'All or something',
-};
+const ADD = 'ADD';
+const REMOVE = 'REMOVE';
 
-// Reducer
-const bookReducer = (state = displayBooks, action) => {
+const books = [
+  { id: 1, author: 'Gabriel Nunekpeku', title: 'All or something' },
+  { id: 2, author: 'Hurey Deril', title: 'We move' },
+];
+
+const BooksReducer = (state = books, action) => {
   switch (action.type) {
     case ADD:
-      return [...state, action.item];
+      return [ ...state, { id: Date.now(),  author: action.option.author, title: action.option.title,
+        },
+      ];
 
     case REMOVE:
       return state.filter((book) => book.id !== action.id);
-
-    default: return state;
+    default:
+      return state;
   }
 };
 
-// Action Creators
-const addBook = (book) => ({
-  type: ADD,
-  item: book,
-});
-
-const removeBook = (id) => ({
+export const removeDefault = (id) => ({
   type: REMOVE,
   id,
 });
 
-export default bookReducer;
-export { removeBook, addBook };
+export const addDefault = (addedBook) => ({
+  type: ADD,
+  option: addedBook,
+});
+
+export default BooksReducer;

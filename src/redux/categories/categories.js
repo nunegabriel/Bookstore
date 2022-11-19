@@ -1,19 +1,22 @@
-const BOOK_STATUS = 'src/redux/books/CATEGORY';
+/* eslint-disable */
 
-const categoryReducer = (state = {}, action) => {
-  switch (action.type) {
-    case BOOK_STATUS:
-      return 'N/A';
+const CHECK = 'CHECK';
 
+const categories = [];
+
+const categoriesReducer = (state = categories, action) => 
+{
+  switch (action.type) 
+  {
+    case CHECK:
+      return ['TBA'];
     default:
-      return state;
+     return state;
   }
 };
 
-const bookCategory = () => ({
-  type: 'BOOK_STATUS',
+export const CheckStatus = () => ({
+  type: CHECK,
 });
 
-export default categoryReducer;
-
-export { bookCategory };
+export default categoriesReducer;

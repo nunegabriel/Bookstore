@@ -1,13 +1,45 @@
-import '../App.css';
+/* eslint-disable */ 
+import { React, useState } from 'react';
 
-function Add() {
+const Addfunction = ({ bookAdd }) => {
+  const [initBook, setBook] = useState({
+    author: '',
+    title: '',
+  });
+
+  
+  const formEvent = (e) => {
+    bookAdd(e, initBook);
+    setBook({ title: '', author: '' });
+  }
+
   return (
-    <form className="book-form">
-      <input type="text" placeholder="Book Title" />
-      <input type="text" placeholder="Author" />
-      <button type="submit">Add Book</button>
-    </form>
-  );
-}
+    <div className ="form">
+      <h2>ADD NEW BOOK</h2>   
+    
+      <form onSubmit={ formEvent }>
 
-export default Add;
+        <input
+          type="text"
+          placeholder="Title"
+          className='title'
+          value={initBook.title}
+          required
+          onChange={(e) => setBook({ ...initBook, title: e.target.value })}
+        />
+        <input
+          type="text"
+          placeholder="Author"
+          className='author'
+          value={initBook.author}
+          required
+          onChange={(e) => setBook({ ...initBook, author: e.target.value })}
+        />
+        <button type="submit" id="add-book">ADD BOOK</button>
+      </form>
+    </div>
+  );
+};
+
+
+export default Addfunction;
