@@ -1,26 +1,36 @@
-/* eslint-disable */
-import React from 'react';
-import Add from './Add';
+import { React } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Book from './Book';
+import { addDefault, removeDefault } from '../redux/books/books';
+import Addfunction from './Add';
 
+function Books() {
+  const dispatch = useDispatch();
 
-const list = [
-  {
-    id: 1,
-    title: 'AFC',
-    author: 'Gabriel',
-  }
-];
+  const BookStored = useSelector((state) => state.BooksReducer);
 
-function Books () 
-{  
-    return(
-        <div>
-    {list.map((list) => <Book key={list.id} title={list.title} author={list.author} />)}
-    <Add />
-  </div>
+  const bookAdd = (e, bookItem) => {
+    e.preventDefault();
+    dispatch(addDefault(bookItem));
+  };
+  const removeBook = (id) => {
+    dispatch(removeDefault(id));
+  };
 
-    )
+  return (
+    <div>
+      {BookStored.map((item) => (
+        <Book
+          author={item.author}
+          title={item.title}
+          id={item.id}
+          key={item.id}
+          removeBook={removeBook}
+        />
+      ))}
+      <Addfunction bookAdd={bookAdd} />
+    </div>
+  );
 }
 
 export default Books;

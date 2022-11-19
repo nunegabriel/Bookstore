@@ -1,22 +1,43 @@
-/* eslint-disable */
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import '../App.css';
-
-function Book(props) {
-  const { author, title } = props;
+function Book({
+  id,
+  title,
+  author,
+  removeBook,
+}) {
   return (
-    <div className="Detail">
-      <p className="author">
-        Author:
-        {author}
-      </p>
-      <p className="title">
-        Title:
+    <div>
+      <h2>
+        Title :
+        {' '}
         {title}
-      </p>
-      <button type="button" className="remove">Remove</button>
+      </h2>
+      <h3>
+        Author :
+        {' '}
+        {author}
+      </h3>
+
+      <button className="btn" type="button" onClick={() => removeBook(id)}>
+        Remove
+      </button>
     </div>
   );
 }
+Book.defaultProps = {
+  id: '',
+  title: '',
+  author: '',
+  removeBook: null,
+};
+
+Book.propTypes = {
+  title: PropTypes.string,
+  id: PropTypes.number,
+  author: PropTypes.string,
+  removeBook: PropTypes.func,
+};
 
 export default Book;

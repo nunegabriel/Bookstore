@@ -1,19 +1,18 @@
-const BOOK_STATUS = 'src/redux/books/CATEGORY';
+const BOOK_STATUS = 'BOOK_STATUS';
 
-const categoryReducer = (state = {}, action) => {
+const categories = [];
+
+export const CheckStatus = () => ({
+  type: BOOK_STATUS,
+});
+
+const categoriesReducer = (state = categories, action) => {
   switch (action.type) {
     case BOOK_STATUS:
       return 'N/A';
-
     default:
       return state;
   }
 };
 
-const bookCategory = () => ({
-  type: 'BOOK_STATUS',
-});
-
-export default categoryReducer;
-
-export { bookCategory };
+export default categoriesReducer;
