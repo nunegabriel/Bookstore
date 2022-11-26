@@ -50,15 +50,16 @@ function Book({
           <br />
         </p>
       </div>
-      <div>
+      <div className="center-div">
         <img className="load" src={load} alt="loading" />
-        <div>80% completed</div>
+        <div className="col-2">
+          <span className="num">80%</span>
+          <p className="num-1">completed</p>
+        </div>
       </div>
       <div className="btn-left">
         <p className="chapter">CURRENT CHAPTER</p>
-        <br />
-        <p className="chapter"> CHAPTER 17</p>
-        <br />
+        <p className="chapter-no"> Chapter 17</p>
         <button type="submit" className="submit-btn-1">Update Progress</button>
       </div>
 

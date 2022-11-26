@@ -37,7 +37,7 @@ const AddBook = () => {
 
   return (
     <div className="form-container">
-      <div className="add-book"> Add A New Book</div>
+      <div className="add-book"> ADD NEW BOOK</div>
       <form className="form" onSubmit={formEvent}>
         <input className="input" onChange={authorEvent} value={initAuthor} type="text" placeholder="Author" required />
         <input className="input" onChange={inputEvent} value={iniTitle} type="text" placeholder="Title" required />
