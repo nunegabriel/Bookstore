@@ -1,47 +1,44 @@
-import { React, useState } from 'react';
-import { PropTypes } from 'prop-types';
+import { useDispatch } from 'react-redux';
+import React, { useState } from 'react';
+import { v4 } from 'uuid';
 
-const Addfunction = ({ bookAdd }) => {
-  const [initBook, setBook] = useState({
-    author: '',
-    title: '',
-  });
+import { addBook } from '../redux/books/books';
+
+const AddBook = () => {
+  const [iniTitle, setTitle] = useState('');
+  const [initAuthor, setAuthor] = useState('');
+
+  const dispatch = useDispatch();
 
   const formEvent = (e) => {
-    bookAdd(e, initBook);
-    setBook({ title: '', author: '' });
+    e.preventDefault();
+
+    const newBook = {
+      id: v4(), title: iniTitle, author: initAuthor, category: '',
+    };
+    setTitle('');
+    setAuthor('');
+    dispatch(addBook(newBook));
+  };
+
+  const inputEvent = (e) => {
+    setTitle(e.target.value);
+  };
+
+  const authorEvent = (e) => {
+    setAuthor(e.target.value);
   };
 
   return (
-    <div className="form">
-      <h2>ADD NEW BOOK</h2>
-
-      <form onSubmit={formEvent}>
-
-        <input
-          type="text"
-          placeholder="Title"
-          className="title"
-          value={initBook.title}
-          required
-          onChange={(e) => setBook({ ...initBook, title: e.target.value })}
-        />
-        <input
-          type="text"
-          placeholder="Author"
-          className="author"
-          value={initBook.author}
-          required
-          onChange={(e) => setBook({ ...initBook, author: e.target.value })}
-        />
-        <button type="submit" id="add-book">ADD BOOK</button>
+    <div className="formContainer">
+      <form className="form" onSubmit={formEvent}>
+        <span> Add A New Book</span>
+        <input className="input" onChange={authorEvent} value={initAuthor} type="text" placeholder="Author" />
+        <input className="input" onChange={inputEvent} value={iniTitle} type="text" placeholder="Title" />
+        <button type="submit" className="submitBtn">Submit</button>
       </form>
     </div>
   );
 };
 
-Addfunction.propTypes = {
-  bookAdd: PropTypes.func.isRequired,
-};
-
-export default Addfunction;
+export default AddBook;

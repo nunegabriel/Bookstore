@@ -1,36 +1,38 @@
-import { React } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 import Book from './Book';
-import { addDefault, removeDefault } from '../redux/books/books';
-import Addfunction from './Add';
+import AddBook from './Add';
+import { getBooks } from '../redux/books/books';
 
-function Books() {
+const Books = () => {
+  const state = useSelector((state) => state.book);
+
   const dispatch = useDispatch();
 
-  const BookStored = useSelector((state) => state.BooksReducer);
-
-  const bookAdd = (e, bookItem) => {
-    e.preventDefault();
-    dispatch(addDefault(bookItem));
-  };
-  const removeBook = (id) => {
-    dispatch(removeDefault(id));
-  };
+  useEffect(() => {
+    dispatch(getBooks());
+  }, [dispatch]);
 
   return (
-    <div>
-      {BookStored.map((item) => (
-        <Book
-          author={item.author}
-          title={item.title}
-          id={item.id}
-          key={item.id}
-          removeBook={removeBook}
-        />
-      ))}
-      <Addfunction bookAdd={bookAdd} />
+    <div className="display">
+      {!state.length ? (
+        <div className="sattus">No available books</div>
+      ) : null}
+      {
+      state && state.map(
+        (item) => (
+          <Book
+            key={item.id}
+            author={item.author}
+            title={item.title}
+            id={item.id}
+          />
+        ),
+      )
+      }
+      <AddBook />
     </div>
   );
-}
+};
 
 export default Books;
