@@ -4,9 +4,11 @@ import { v4 } from 'uuid';
 
 import { addBook } from '../redux/books/books';
 
+// hooks
 const AddBook = () => {
-  const [iniTitle, setTitle] = useState('');
   const [initAuthor, setAuthor] = useState('');
+  const [iniTitle, setTitle] = useState('');
+  const [category, setCategory] = useState('');
 
   const dispatch = useDispatch();
 
@@ -14,8 +16,12 @@ const AddBook = () => {
     e.preventDefault();
 
     const newBook = {
-      id: v4(), title: iniTitle, author: initAuthor, category: '',
+      id: v4(),
+      title: iniTitle,
+      author: initAuthor,
+      category,
     };
+
     setTitle('');
     setAuthor('');
     dispatch(addBook(newBook));
@@ -30,12 +36,21 @@ const AddBook = () => {
   };
 
   return (
-    <div className="formContainer">
+    <div className="form-container">
+      <div className="add-book"> ADD NEW BOOK</div>
       <form className="form" onSubmit={formEvent}>
-        <span> Add A New Book</span>
-        <input className="input" onChange={authorEvent} value={initAuthor} type="text" placeholder="Author" />
-        <input className="input" onChange={inputEvent} value={iniTitle} type="text" placeholder="Title" />
-        <button type="submit" className="submitBtn">Submit</button>
+        <input className="input" onChange={authorEvent} value={initAuthor} type="text" placeholder="Author" required />
+        <input className="input" onChange={inputEvent} value={iniTitle} type="text" placeholder="Title" required />
+        <select name="select" className="dropDown" onChange={(e) => setCategory(e.target.value)}>
+          <option value="categories">categories</option>
+          <option>Sci-Fi</option>
+          <option>Drama</option>
+          <option>Sports</option>
+          <option>Romance</option>
+          <option>Action</option>
+          <option>Fantasy</option>
+        </select>
+        <button type="submit" className="submit-btn">Submit</button>
       </form>
     </div>
   );
