@@ -10,7 +10,7 @@
 
 ## Live Demo
 
-N/A
+https://bhookstore.netlify.app/
 
 ## Get Started
 
